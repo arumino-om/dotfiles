@@ -21,6 +21,21 @@ OS="$(uname | tr '[:upper:]' '[:lower:]')"
 # 処理対象のルート (後ろほど優先)
 ROOTS=("$SCRIPT_DIR" "$EXTERNAL_DIR")
 
+# ----- git -----
+
+# GH_TOKEN があれば github.com への認証にそれを使って git を実行する
+# (Codespaces の GITHUB_TOKEN は他のプライベートリポジトリを読めないため)
+# git の設定ファイルは変更せず，このコマンド実行時だけ認証ヘルパーを差し替える
+git_auth() {
+    if [ -n "${GH_TOKEN:-}" ]; then
+        git -c credential.https://github.com.helper= \
+            -c 'credential.https://github.com.helper=!f() { [ "$1" = get ] && printf "username=x-access-token\npassword=%s\n" "$GH_TOKEN"; }; f' \
+            "$@"
+    else
+        git "$@"
+    fi
+}
+
 # ----- packages -----
 
 # $1: git-repos.txt のパス
@@ -83,9 +98,9 @@ link_tree() {
 # 1. 外部dotfiles (リンク時に優先させるため先に取得)
 if [ -n "${EXTERNAL_DOTFILES_REPO:-}" ]; then
     if [ -d "$EXTERNAL_DIR/.git" ]; then
-        git -C "$EXTERNAL_DIR" pull --ff-only
+        git_auth -C "$EXTERNAL_DIR" pull --ff-only
     else
-        git clone "$EXTERNAL_DOTFILES_REPO" "$EXTERNAL_DIR"
+        git_auth clone "$EXTERNAL_DOTFILES_REPO" "$EXTERNAL_DIR"
     fi
 fi
 
