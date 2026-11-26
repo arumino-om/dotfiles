@@ -1,0 +1,16 @@
+# ===== git clone するリポジトリ (macOS) =====
+# 書式: <リポジトリURL> <クローン先 ($HOME からの相対パス)>
+# クローン先が既に存在する場合はスキップする
+# 上から順に処理されるので，依存されるものを先に書く
+# ============================================
+
+# oh-my-zsh 本体 (公式インストーラは ~/.zshrc を上書きするため直接clone)
+https://github.com/ohmyzsh/ohmyzsh.git                  .oh-my-zsh
+
+# oh-my-zsh テーマ
+https://github.com/romkatv/powerlevel10k.git            .oh-my-zsh/custom/themes/powerlevel10k
+
+# oh-my-zsh プラグイン
+https://github.com/zsh-users/zsh-autosuggestions.git    .oh-my-zsh/custom/plugins/zsh-autosuggestions
+https://github.com/zsh-users/zsh-syntax-highlighting.git .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+https://github.com/fdellwing/zsh-bat.git                .oh-my-zsh/custom/plugins/zsh-bat

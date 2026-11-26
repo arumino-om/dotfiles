@@ -1,0 +1,44 @@
+tap "shaunsingh/sfmono-nerd-font-ligaturized", trusted: true
+tap "tsung-ju/iguanatexmac", trusted: true
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# GitHub command-line tool (bootstrap.sh でも導入)
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Distributed revision control system (bootstrap.sh でも導入)
+brew "git"
+# Remote repository management made easy
+brew "ghq"
+# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "nginx", restart_service: :changed
+# Prints a steam locomotive if you type sl instead of ls
+brew "sl"
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Command-line interface for 1Password
+cask "1password-cli"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
+# Japanese input method editor (IME) produced by JustSystems
+cask "atok"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+cask "font-sf-mono-nerd-font-ligaturized"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+cask "tsung-ju/iguanatexmac/iguanatexmac"
+# Hex editor for reverse engineers
+cask "imhex"
+# Manager for Morisawa Fonts
+cask "morisawa-desktop-manager"
+# Control your tools with a few keystrokes
+cask "raycast"
+# SSH client
+cask "termius"
+# Open-source code editor
+cask "visual-studio-code"
+# Network protocol analyzer
+cask "wireshark-app"
+# Collect, organise, cite, and share research sources
+cask "zotero"
